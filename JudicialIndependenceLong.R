@@ -30,40 +30,103 @@ stargazer(lji, summary = FALSE, type = 'text', rownames = FALSE) #latex
 
 
 # Subset by US, Argentina, Germany, and Bolivia
-states <- c('United States of America', 'Argentina', 'Germany', 'Bolivia')
-#west <- x[which(x$X.country. %in% states),]
+states <- c('United States of America', 'Argentina', 'Germany', 'Bolivia', 
+            'German Democratic Republic', 'German Federal Republic')
 
-plot(x$X.year.[which(x$X.country. == states[1])], 
-     x$X.LJI.[which(x$X.country. == states[1])])
 
-plot(x$X.year.[which(x$X.country. == states[2])], 
-     x$X.LJI.[which(x$X.country. == states[2])])
-
-plot(x$X.year.[which(x$X.country. == states[3])], 
-     x$X.LJI.[which(x$X.country. == states[3])])
-
-plot(x$X.year.[which(x$X.country. == states[4])], 
-     x$X.LJI.[which(x$X.country. == states[4])])
-
+# Line plots of four states' judicial ind. scores over time
 ggplot() + 
-  geom_line(data = x[which(x$X.country. == states[1]),], aes(x = X.year., y = X.LJI., color = states[1])) +
-  geom_line(data = x[which(x$X.country. == states[2]),], aes(x =  X.year., y = X.LJI., color = states[2])) +
-  geom_line(data = x[which(x$X.country. == states[3]),], aes(x =  X.year., y = X.LJI., color = states[3])) +
-  geom_line(data = x[which(x$X.country. == states[4]),], aes(x =  X.year., y = X.LJI., color = states[4])) +
+  geom_line(data = x[which(x$X.country. == states[1]),], 
+            aes(x = X.year., y = X.LJI., color = states[1])) +
+  geom_line(data = x[which(x$X.country. == states[2]),], 
+            aes(x =  X.year., y = X.LJI., color = states[2])) +
+  geom_line(data = x[which(x$X.country. == states[3]),], 
+            aes(x =  X.year., y = X.LJI., color = states[3])) +
+  geom_line(data = x[which(x$X.country. == states[4]),], 
+            aes(x =  X.year., y = X.LJI., color = states[4])) +
   xlab('') +
   ylab('Judicial Independence Score') +
-  scale_color_manual(values = c('United States of America' = '#009E73', 'Argentina' = '#0072B2',
-                     'Germany' = '#E69F00', 'Bolivia' = '#D55E00')) +
+  scale_color_manual(values = c('United States of America' = '#009E73', 
+                                'Argentina' = '#0072B2', 'Germany' = '#E69F00', 
+                                'Bolivia' = '#D55E00')) +
   labs(color = '')
-  
+
+# Plots of four states' judicial ind. scores over time  
 ggplot() + 
-  geom_point(data = x[which(x$X.country. == states[1]),], aes(x = X.year., y = X.LJI., color = states[1])) +
-  geom_point(data = x[which(x$X.country. == states[2]),], aes(x =  X.year., y = X.LJI., color = states[2])) +
-  geom_point(data = x[which(x$X.country. == states[3]),], aes(x =  X.year., y = X.LJI., color = states[3])) +
-  geom_point(data = x[which(x$X.country. == states[4]),], aes(x =  X.year., y = X.LJI., color = states[4])) +
+  geom_point(data = x[which(x$X.country. == states[1]),], 
+             aes(x = X.year., y = X.LJI., color = states[1])) +
+  geom_point(data = x[which(x$X.country. == states[2]),], 
+             aes(x =  X.year., y = X.LJI., color = states[2])) +
+  geom_point(data = x[which(x$X.country. == states[3]),], 
+             aes(x =  X.year., y = X.LJI., color = states[3])) +
+  geom_point(data = x[which(x$X.country. == states[4]),],
+             aes(x =  X.year., y = X.LJI., color = states[4])) +
   xlab('') +
   ylab('Judicial Independence Score') +
-  scale_color_manual(values = c('United States of America' = '#009E73', 'Argentina' = '#0072B2',
+  scale_color_manual(values = c('United States of America' = '#009E73', 
+                                'Argentina' = '#0072B2',
                                 'Germany' = '#E69F00', 'Bolivia' = '#D55E00')) +
   labs(color = '')
 
+# Include East Germany for Germany pre-1980
+ggplot() + 
+  geom_point(data = x[which(x$X.country. == states[1]),], 
+             aes(x = X.year., y = X.LJI., color = states[1])) +
+  geom_point(data = x[which(x$X.country. == states[2]),], 
+             aes(x =  X.year., y = X.LJI., color = states[2])) +
+  geom_point(data = x[which(x$X.country. == states[3]),], 
+             aes(x =  X.year., y = X.LJI., color = states[3])) +
+  geom_point(data = x[which(x$X.country. == states[4]),], 
+             aes(x =  X.year., y = X.LJI., color = states[4])) +
+  geom_point(data = x[which(x$X.country. == states[5]),], 
+             aes(x =  X.year., y = X.LJI., color = states[5])) +
+  xlab('') +
+  ylab('Judicial Independence Score') +
+  scale_color_manual(values = c('United States of America' = '#009E73', 
+                                'Argentina' = '#0072B2', 'Germany' = '#E69F00', 
+                                'Bolivia' = '#D55E00', 
+                                'German Democratic Republic' = '#E69F00')) +
+  labs(color = '')
+
+# Include West Germany for Germany pre-1980
+ggplot() + 
+  geom_point(data = x[which(x$X.country. == states[1]),], 
+             aes(x = X.year., y = X.LJI., color = states[1])) +
+  geom_point(data = x[which(x$X.country. == states[2]),], 
+             aes(x =  X.year., y = X.LJI., color = states[2])) +
+  geom_point(data = x[which(x$X.country. == states[3]),], 
+             aes(x =  X.year., y = X.LJI., color = states[3])) +
+  geom_point(data = x[which(x$X.country. == states[4]),], 
+             aes(x =  X.year., y = X.LJI., color = states[4])) +
+  geom_point(data = x[which(x$X.country. == states[6]),], 
+             aes(x =  X.year., y = X.LJI., color = states[6])) +
+  xlab('') +
+  ylab('Judicial Independence Score') +
+  scale_color_manual(values = c('United States of America' = '#009E73', 
+                                'Argentina' = '#0072B2', 'Germany' = '#E69F00', 
+                                'Bolivia' = '#D55E00', 
+                                'German Federal Republic' = '#E69F00')) +
+  labs(color = '')
+
+# Include both East and West Germany
+ggplot() + 
+  geom_point(data = x[which(x$X.country. == states[1]),], 
+             aes(x = X.year., y = X.LJI., color = states[1])) +
+  geom_point(data = x[which(x$X.country. == states[2]),], 
+             aes(x =  X.year., y = X.LJI., color = states[2])) +
+  geom_point(data = x[which(x$X.country. == states[3]),], 
+             aes(x =  X.year., y = X.LJI., color = states[3])) +
+  geom_point(data = x[which(x$X.country. == states[4]),], 
+             aes(x =  X.year., y = X.LJI., color = states[4])) +
+  geom_point(data = x[which(x$X.country. == states[5]),], 
+             aes(x =  X.year., y = X.LJI., color = states[5])) +
+  geom_point(data = x[which(x$X.country. == states[6]),], 
+             aes(x =  X.year., y = X.LJI., color = states[6])) +
+  xlab('') +
+  ylab('Judicial Independence Score') +
+  scale_color_manual(values = c('United States of America' = '#009E73', 
+                                'Argentina' = '#0072B2', 'Germany' = '#E69F00', 
+                                'Bolivia' = '#D55E00', 
+                                'German Democratic Republic' = '#E69F00',
+                                'German Federal Republic' = '#E69F00')) +
+  labs(color = '')
