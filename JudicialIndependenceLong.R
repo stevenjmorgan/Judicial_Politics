@@ -27,6 +27,11 @@ for (i in 1:nrow(lji)) {
 
 lji$Year <- as.character(lji$Year)
 stargazer(lji, summary = FALSE, type = 'text', rownames = FALSE) #latex
+stargazer(lji, summary = FALSE, type = 'latex', rownames = FALSE, 
+          style = 'AJPS', header = FALSE, 
+          title = 'Summary Statistics for Staton and Linzer\'s Measure of Judicial Independence', 
+          table.placement = '!htbp', notes.align = 'c', notes.append = TRUE,
+          notes.label = 'Table 1') 
 
 
 # Subset by US, Argentina, Germany, and Bolivia
@@ -109,7 +114,7 @@ ggplot() +
   labs(color = '')
 
 # Include both East and West Germany
-ggplot() + 
+jdi.temp <- ggplot() + 
   geom_point(data = x[which(x$X.country. == states[1]),], 
              aes(x = X.year., y = X.LJI., color = states[1])) +
   geom_point(data = x[which(x$X.country. == states[2]),], 
@@ -127,6 +132,8 @@ ggplot() +
   scale_color_manual(values = c('United States of America' = '#009E73', 
                                 'Argentina' = '#0072B2', 'Germany' = '#E69F00', 
                                 'Bolivia' = '#D55E00', 
-                                'German Democratic Republic' = '#E69F00',
-                                'German Federal Republic' = '#E69F00')) +
+                                'German Democratic Republic' = '#CC79A7',
+                                'German Federal Republic' = '#F0E442')) +
   labs(color = '')
+
+ggsave('jdiTemp.pdf')
