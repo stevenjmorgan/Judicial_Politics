@@ -137,3 +137,29 @@ jdi.temp <- ggplot() +
   labs(color = '')
 
 ggsave('jdiTemp.pdf')
+
+# Remove overlap between East and West Germany and Germany 1980-1990
+jdi.temp.over <- ggplot() + 
+  geom_point(data = x[which(x$X.country. == states[1]),], 
+             aes(x = X.year., y = X.LJI., color = states[1])) +
+  geom_point(data = x[which(x$X.country. == states[2]),], 
+             aes(x =  X.year., y = X.LJI., color = states[2])) +
+  geom_point(data = x[which(x$X.country. == states[3]),], 
+             aes(x =  X.year., y = X.LJI., color = states[3])) +
+  geom_point(data = x[which(x$X.country. == states[4]),], 
+             aes(x =  X.year., y = X.LJI., color = states[4])) +
+  geom_point(data = x[which(x$X.country. == states[5] & x$X.year. <= 1980),], 
+             aes(x =  X.year., y = X.LJI., color = states[5])) +
+  geom_point(data = x[which(x$X.country. == states[6] & x$X.year. <= 1980),], 
+             aes(x =  X.year., y = X.LJI., color = states[6])) +
+  xlab('') +
+  ylab('Judicial Independence Score') +
+  scale_color_manual(values = c('United States of America' = '#009E73', 
+                                'Argentina' = '#0072B2', 'Germany' = '#E69F00', 
+                                'Bolivia' = '#D55E00', 
+                                'German Democratic Republic' = '#CC79A7',
+                                'German Federal Republic' = '#F0E442')) +
+  labs(color = '')
+
+ggsave('jdiTempOver.pdf')
+
